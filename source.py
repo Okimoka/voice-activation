@@ -3,8 +3,15 @@ import struct
 import math
 import ctypes
 import time
-#from kivy.app import App
-#from kivy.uix.button import Button
+
+VOICE_THRESHOLD = 0.01
+
+FORMAT = pyaudio.paInt16 
+SHORT_NORMALIZE = (1.0/32768.0)
+CHANNELS = 2
+RATE = 44100 
+INPUT_BLOCK_TIME = 0.05
+INPUT_FRAMES_PER_BLOCK = int(RATE*INPUT_BLOCK_TIME)
 
 
 SendInput = ctypes.windll.user32.SendInput
@@ -59,13 +66,7 @@ def ReleaseKey(hexKeyCode):
 
 
 
-VOICE_THRESHOLD = 0.010
-FORMAT = pyaudio.paInt16 
-SHORT_NORMALIZE = (1.0/32768.0)
-CHANNELS = 2
-RATE = 44100 
-INPUT_BLOCK_TIME = 0.05
-INPUT_FRAMES_PER_BLOCK = int(RATE*INPUT_BLOCK_TIME)
+
 
 def get_rms(block):
 
